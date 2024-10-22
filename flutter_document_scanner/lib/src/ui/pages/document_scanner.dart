@@ -12,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_document_scanner/src/bloc/app/app_bloc.dart';
 import 'package:flutter_document_scanner/src/bloc/app/app_state.dart';
 import 'package:flutter_document_scanner/src/document_scanner_controller.dart';
+import 'package:flutter_document_scanner/src/models/area.dart';
 import 'package:flutter_document_scanner/src/ui/pages/crop_photo_document_page.dart';
 import 'package:flutter_document_scanner/src/ui/pages/edit_document_photo_page.dart';
 import 'package:flutter_document_scanner/src/ui/pages/take_photo_document_page.dart';
@@ -37,6 +38,7 @@ class DocumentScanner extends StatelessWidget {
     this.cropPhotoDocumentStyle = const CropPhotoDocumentStyle(),
     this.editPhotoDocumentStyle = const EditPhotoDocumentStyle(),
     required this.onSave,
+    this.onChangeArea,
   });
 
   /// Controller to execute the different functionalities
@@ -72,6 +74,8 @@ class DocumentScanner extends StatelessWidget {
   /// After performing the whole process of capturing the document
   /// It will return it as [Uint8List].
   final OnSave onSave;
+
+  final void Function(Area area)? onChangeArea;
 
   @override
   Widget build(BuildContext context) {
@@ -180,6 +184,7 @@ class DocumentScanner extends StatelessWidget {
               onSave: onSave,
               initialCameraLensDirection: initialCameraLensDirection,
               resolutionCamera: resolutionCamera,
+              onChangeArea: onChangeArea,
             ),
           ),
         ),
@@ -198,6 +203,7 @@ class _View extends StatelessWidget {
     required this.onSave,
     required this.initialCameraLensDirection,
     required this.resolutionCamera,
+    this.onChangeArea,
   });
 
   final AnimatedSwitcherTransitionBuilder? pageTransitionBuilder;
@@ -208,6 +214,7 @@ class _View extends StatelessWidget {
   final OnSave onSave;
   final CameraLensDirection initialCameraLensDirection;
   final ResolutionPreset resolutionCamera;
+  final void Function(Area area)? onChangeArea;
 
   @override
   Widget build(BuildContext context) {

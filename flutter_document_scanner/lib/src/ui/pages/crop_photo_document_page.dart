@@ -28,10 +28,12 @@ class CropPhotoDocumentPage extends StatelessWidget {
   const CropPhotoDocumentPage({
     super.key,
     required this.cropPhotoDocumentStyle,
+    this.onChangeArea,
   });
 
   /// Style of the page
   final CropPhotoDocumentStyle cropPhotoDocumentStyle;
+  final void Function(Area area)? onChangeArea;
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +73,7 @@ class CropPhotoDocumentPage extends StatelessWidget {
             child: _CropView(
               cropPhotoDocumentStyle: cropPhotoDocumentStyle,
               image: state,
+              onChangeArea: onChangeArea,
             ),
           );
         },
@@ -90,9 +93,11 @@ class _CropView extends StatelessWidget {
   const _CropView({
     required this.cropPhotoDocumentStyle,
     required this.image,
+    this.onChangeArea,
   });
   final CropPhotoDocumentStyle cropPhotoDocumentStyle;
   final File image;
+  final void Function(Area area)? onChangeArea;
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +124,13 @@ class _CropView extends StatelessWidget {
                     ),
                   );
             }
+          },
+        ),
+        BlocListener<CropBloc, CropState>(
+          listenWhen: (previous, current) => current.area != previous.area,
+          listener: (context, state) async {
+            onChangeArea?.call(
+                await context.read<CropBloc>().getAreaInOriginalSize(image));
           },
         ),
       ],

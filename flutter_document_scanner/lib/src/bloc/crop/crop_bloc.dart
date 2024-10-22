@@ -6,6 +6,7 @@
 // https://opensource.org/licenses/MIT.
 
 import 'dart:async';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:bloc/bloc.dart';
@@ -226,6 +227,32 @@ class CropBloc extends Bloc<CropEvent, CropState> {
       state.copyWith(
         imageCropped: response ?? event.image.readAsBytesSync(),
         areaParsed: area,
+      ),
+    );
+  }
+
+  /// Get Area In Original Size when area change
+  Future<Area> getAreaInOriginalSize(File image) async {
+    final imageDecoded = await decodeImageFromList(image.readAsBytesSync());
+    final scalingFactorY = imageDecoded.height / newScreenSize.height;
+    final scalingFactorX = imageDecoded.width / newScreenSize.width;
+
+    return Area(
+      topRight: Point(
+        state.area.topRight.x * scalingFactorX,
+        state.area.topRight.y * scalingFactorY,
+      ),
+      topLeft: Point(
+        state.area.topLeft.x * scalingFactorX,
+        state.area.topLeft.y * scalingFactorY,
+      ),
+      bottomLeft: Point(
+        state.area.bottomLeft.x * scalingFactorX,
+        state.area.bottomLeft.y * scalingFactorY,
+      ),
+      bottomRight: Point(
+        state.area.bottomRight.x * scalingFactorX,
+        state.area.bottomRight.y * scalingFactorY,
       ),
     );
   }
