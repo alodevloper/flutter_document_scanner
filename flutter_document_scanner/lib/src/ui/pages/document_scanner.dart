@@ -246,6 +246,7 @@ class _View extends StatelessWidget {
           case AppPages.cropPhoto:
             page = CropPhotoDocumentPage(
               cropPhotoDocumentStyle: cropPhotoDocumentStyle,
+              onChangeArea: onChangeArea,
             );
             break;
 
