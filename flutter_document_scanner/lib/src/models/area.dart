@@ -17,6 +17,8 @@ class Area extends Equatable {
     required this.topRight,
     required this.bottomLeft,
     required this.bottomRight,
+    this.height,
+    this.width,
   });
 
   /// The top left dot
@@ -31,12 +33,18 @@ class Area extends Equatable {
   /// The bottom right dot
   final Point<double> bottomRight;
 
+  /// Size of image
+  final double? height;
+  final double? width;
+
   @override
   List<Object?> get props => [
         topLeft,
         topRight,
         bottomLeft,
         bottomRight,
+        height,
+        width,
       ];
 
   /// Creates a copy of this Area but with the given fields replaced with
@@ -46,12 +54,16 @@ class Area extends Equatable {
     Point<double>? topRight,
     Point<double>? bottomLeft,
     Point<double>? bottomRight,
+    double? height,
+    double? width,
   }) {
     return Area(
       topLeft: topLeft ?? this.topLeft,
       topRight: topRight ?? this.topRight,
       bottomLeft: bottomLeft ?? this.bottomLeft,
       bottomRight: bottomRight ?? this.bottomRight,
+      height: height ?? this.height,
+      width: width ?? this.width,
     );
   }
 }
