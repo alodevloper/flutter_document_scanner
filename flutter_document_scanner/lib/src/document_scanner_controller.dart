@@ -119,6 +119,8 @@ class DocumentScannerController {
     _appBloc.add(AppStartedSavingDocument());
   }
 
+  ImageUtils get imageUtils => _appBloc.imageUtils;
+
   /// Dispose the [AppBloc]
   void dispose() {
     _appBloc.close();
