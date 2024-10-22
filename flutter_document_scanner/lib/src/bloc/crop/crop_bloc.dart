@@ -254,6 +254,8 @@ class CropBloc extends Bloc<CropEvent, CropState> {
         state.area.bottomRight.x * scalingFactorX,
         state.area.bottomRight.y * scalingFactorY,
       ),
+      height: imageDecoded.height.toDouble(),
+      width: imageDecoded.width.toDouble(),
     );
   }
 }
