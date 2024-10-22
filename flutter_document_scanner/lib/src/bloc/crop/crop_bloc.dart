@@ -41,7 +41,7 @@ class CropBloc extends Bloc<CropEvent, CropState> {
   late Size newScreenSize;
 
   ///
-  late Size sizeOriginalImage;
+  Size? sizeOriginalImage;
 
   /// Position the dots according to the
   /// sent contour [CropAreaInitialized.areaInitial]
@@ -238,9 +238,19 @@ class CropBloc extends Bloc<CropEvent, CropState> {
 
   /// Get Area In Original Size when area change
   Future<Area> getAreaInOriginalSize(File image) async {
-    // final imageDecoded = await decodeImageFromList(image.readAsBytesSync());
-    final scalingFactorY = sizeOriginalImage.height / newScreenSize.height;
-    final scalingFactorX = sizeOriginalImage.width / newScreenSize.width;
+    double scalingFactorY = 0;
+    double scalingFactorX = 0;
+    if (sizeOriginalImage == null) {
+      final imageDecoded = await decodeImageFromList(image.readAsBytesSync());
+      final size =
+          Size(imageDecoded.width.toDouble(), imageDecoded.height.toDouble());
+      sizeOriginalImage = size;
+      scalingFactorY = size.height / newScreenSize.height;
+      scalingFactorX = size.width / newScreenSize.width;
+    } else {
+      scalingFactorY = sizeOriginalImage!.height / newScreenSize.height;
+      scalingFactorX = sizeOriginalImage!.width / newScreenSize.width;
+    }
 
     return Area(
       topRight: Point(
@@ -259,8 +269,8 @@ class CropBloc extends Bloc<CropEvent, CropState> {
         state.area.bottomRight.x * scalingFactorX,
         state.area.bottomRight.y * scalingFactorY,
       ),
-      height: sizeOriginalImage.height,
-      width: sizeOriginalImage.width,
+      height: sizeOriginalImage?.height,
+      width: sizeOriginalImage?.width,
     );
   }
 }
