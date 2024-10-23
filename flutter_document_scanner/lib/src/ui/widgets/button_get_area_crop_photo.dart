@@ -22,6 +22,7 @@ class ButtonGetAreaCropPhoto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> children = [
+      ...model.ortherChilds,
       Expanded(
         child: InkWell(
           onTap: () async {
@@ -33,7 +34,6 @@ class ButtonGetAreaCropPhoto extends StatelessWidget {
           child: model.child,
         ),
       ),
-      ...model.ortherChilds,
     ];
     return Positioned(
       top: model.position.top,
