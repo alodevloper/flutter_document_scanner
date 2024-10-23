@@ -10,32 +10,37 @@ import 'package:flutter_document_scanner/src/models/area.dart';
 class ButtonGetAreaCropPhoto extends StatelessWidget {
   const ButtonGetAreaCropPhoto({
     super.key,
-    required this.child,
-    required this.position,
     required this.onChangeArea,
     required this.image,
+    required this.model,
   });
 
-  final Widget child;
-  final PositionModel position;
+  final GetAreaCropPhotoModel model;
   final void Function(Area area) onChangeArea;
   final File image;
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: position.top,
-      bottom: position.bottom,
-      left: position.left,
-      right: position.right,
-      child: InkWell(
-        onTap: () async {
-          onChangeArea(
-            await context.read<CropBloc>().getAreaInOriginalSize(image),
-          );
-        },
-        child: child,
+    final List<Widget> children = [
+      Expanded(
+        child: InkWell(
+          onTap: () async {
+            onChangeArea(
+              await context.read<CropBloc>().getAreaInOriginalSize(image),
+            );
+            model.onPressedChild?.call();
+          },
+          child: model.child,
+        ),
       ),
+      ...model.ortherChilds,
+    ];
+    return Positioned(
+      top: model.position.top,
+      bottom: model.position.bottom,
+      left: model.position.left,
+      right: model.position.right,
+      child: model.isRow ? Row(children: children) : Column(children: children),
     );
   }
 }
@@ -56,8 +61,15 @@ class PositionModel {
 class GetAreaCropPhotoModel {
   final Widget child;
   final PositionModel position;
+  final VoidCallback? onPressedChild;
+  final bool isRow;
+  final List<Widget> ortherChilds;
+
   GetAreaCropPhotoModel({
     required this.child,
     required this.position,
+    this.onPressedChild,
+    this.isRow = true,
+    this.ortherChilds = const [],
   });
 }

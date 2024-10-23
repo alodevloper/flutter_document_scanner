@@ -370,10 +370,9 @@ class _CropView extends StatelessWidget {
           // * getAreaCropPhoto button
           if (cropPhotoDocumentStyle.getAreaCropPhotoModel != null)
             ButtonGetAreaCropPhoto(
-              position: cropPhotoDocumentStyle.getAreaCropPhotoModel!.position,
               onChangeArea: onChangeArea ?? (area) {},
               image: image,
-              child: cropPhotoDocumentStyle.getAreaCropPhotoModel!.child,
+              model: cropPhotoDocumentStyle.getAreaCropPhotoModel!,
             ),
         ],
       ),
