@@ -10,6 +10,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_document_scanner/src/models/area.dart';
+import 'package:flutter_document_scanner/src/ui/widgets/button_get_area_crop_photo.dart';
 
 /// The style of the crop photo document.
 @immutable
@@ -36,6 +37,7 @@ class CropPhotoDocumentStyle {
     this.minDistanceDots = 30,
     this.colorBorderArea = Colors.white,
     this.widthBorderArea = 3,
+    this.getAreaCropPhotoModel,
   });
 
   /// Hide the app bar default.
@@ -86,4 +88,7 @@ class CropPhotoDocumentStyle {
 
   /// Width of the border covering the clipping mask
   final double widthBorderArea;
+
+  //button tap top get area of original image
+  final GetAreaCropPhotoModel? getAreaCropPhotoModel;
 }

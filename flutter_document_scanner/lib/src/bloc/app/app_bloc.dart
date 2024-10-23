@@ -40,6 +40,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   final ImageUtils _imageUtils;
 
   ImageUtils get imageUtils => _imageUtils;
+  
 
   CameraController? _cameraController;
   late XFile? _pictureTaken;

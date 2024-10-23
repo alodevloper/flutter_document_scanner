@@ -17,10 +17,10 @@ import 'package:flutter_document_scanner/src/bloc/crop/crop_bloc.dart';
 import 'package:flutter_document_scanner/src/bloc/crop/crop_event.dart';
 import 'package:flutter_document_scanner/src/bloc/crop/crop_state.dart';
 import 'package:flutter_document_scanner/src/ui/widgets/app_bar_crop_photo.dart';
+import 'package:flutter_document_scanner/src/ui/widgets/button_get_area_crop_photo.dart';
 import 'package:flutter_document_scanner/src/ui/widgets/mask_crop.dart';
 import 'package:flutter_document_scanner/src/utils/border_crop_area_painter.dart';
 import 'package:flutter_document_scanner/src/utils/dot_utils.dart';
-import 'package:flutter_document_scanner/src/utils/image_utils.dart';
 
 /// Page to crop a photo
 class CropPhotoDocumentPage extends StatelessWidget {
@@ -124,13 +124,6 @@ class _CropView extends StatelessWidget {
                     ),
                   );
             }
-          },
-        ),
-        BlocListener<CropBloc, CropState>(
-          listenWhen: (previous, current) => current.area != previous.area,
-          listener: (context, state) async {
-            onChangeArea?.call(
-                await context.read<CropBloc>().getAreaInOriginalSize(image));
           },
         ),
       ],
@@ -373,6 +366,15 @@ class _CropView extends StatelessWidget {
           // * children
           if (cropPhotoDocumentStyle.children != null)
             ...cropPhotoDocumentStyle.children!,
+
+          // * getAreaCropPhoto button
+          if (cropPhotoDocumentStyle.getAreaCropPhotoModel != null)
+            ButtonGetAreaCropPhoto(
+              position: cropPhotoDocumentStyle.getAreaCropPhotoModel!.position,
+              onChangeArea: onChangeArea ?? (area) {},
+              image: image,
+              child: cropPhotoDocumentStyle.getAreaCropPhotoModel!.child,
+            ),
         ],
       ),
     );
