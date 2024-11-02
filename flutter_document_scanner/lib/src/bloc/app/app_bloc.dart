@@ -40,7 +40,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   final ImageUtils _imageUtils;
 
   ImageUtils get imageUtils => _imageUtils;
-  
 
   CameraController? _cameraController;
   late XFile? _pictureTaken;
@@ -54,6 +53,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     AppCameraInitialized event,
     Emitter<AppState> emit,
   ) async {
+    if (state.statusCamera.isSuccess) return;
     emit(
       state.copyWith(
         statusCamera: AppStatus.loading,
