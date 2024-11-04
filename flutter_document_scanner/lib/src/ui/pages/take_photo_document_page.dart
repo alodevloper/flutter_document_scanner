@@ -104,7 +104,9 @@ class _CameraPreview extends StatelessWidget {
               bottom: takePhotoDocumentStyle.bottom,
               left: takePhotoDocumentStyle.left,
               right: takePhotoDocumentStyle.right,
-              child: CameraPreview(state),
+              child: takePhotoDocumentStyle.filterWidget
+                      ?.call(CameraPreview(state)) ??
+                  CameraPreview(state),
             ),
 
             // * children

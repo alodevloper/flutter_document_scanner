@@ -21,6 +21,7 @@ class TakePhotoDocumentStyle {
     this.left = 0,
     this.right = 0,
     this.hideDefaultButtonTakePicture = false,
+    this.filterWidget,
   });
 
   /// Widget to be displayed while loading the camera
@@ -47,4 +48,5 @@ class TakePhotoDocumentStyle {
 
   /// Hide the default button to take picture
   final bool hideDefaultButtonTakePicture;
+  final Widget Function(Widget child)? filterWidget;
 }
