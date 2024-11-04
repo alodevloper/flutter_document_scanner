@@ -38,6 +38,7 @@ class CropPhotoDocumentStyle {
     this.colorBorderArea = Colors.white,
     this.widthBorderArea = 3,
     this.getAreaCropPhotoModel,
+    this.filterWidget,
   });
 
   /// Hide the app bar default.
@@ -91,4 +92,6 @@ class CropPhotoDocumentStyle {
 
   //button tap top get area of original image
   final GetAreaCropPhotoModel? getAreaCropPhotoModel;
+
+  final Widget Function(Widget child)? filterWidget;
 }

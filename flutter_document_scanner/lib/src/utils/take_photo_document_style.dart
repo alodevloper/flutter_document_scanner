@@ -48,5 +48,7 @@ class TakePhotoDocumentStyle {
 
   /// Hide the default button to take picture
   final bool hideDefaultButtonTakePicture;
+
+  /// Filter image realtime from camera
   final Widget Function(Widget child)? filterWidget;
 }
