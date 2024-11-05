@@ -43,14 +43,19 @@ class AppPhotoTaken extends AppEvent {
   /// Create an event instance
   AppPhotoTaken({
     this.minContourArea,
+    this.areaDefault,
   });
 
   /// Minimum area to detect a contour
   final double? minContourArea;
 
+  /// Use default variable without calling function to find area
+  final Area? areaDefault;
+
   @override
   List<Object?> get props => [
         minContourArea,
+        areaDefault,
       ];
 }
 

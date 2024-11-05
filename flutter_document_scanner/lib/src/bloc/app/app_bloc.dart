@@ -108,11 +108,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     _pictureTaken = await _cameraController!.takePicture();
 
-    final byteData = await _pictureTaken!.readAsBytes();
-    final response = await _imageUtils.findContourPhoto(
-      byteData,
-      minContourArea: event.minContourArea,
-    );
+    final byteData =
+        event.areaDefault == null ? await _pictureTaken!.readAsBytes() : null;
+    final response = event.areaDefault ??
+        await _imageUtils.findContourPhoto(
+          byteData!,
+          minContourArea: event.minContourArea,
+        );
 
     final fileImage = File(_pictureTaken!.path);
 
