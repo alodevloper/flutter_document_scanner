@@ -66,7 +66,12 @@ class CropBloc extends Bloc<CropEvent, CropState> {
       Area areaInitial = event.areaInitial!;
       if (event.isCustomAreaInitial) {
         areaInitial = event.areaInitial!
-            .rescale(newScreenSize.height, newScreenSize.height);
+            .rescale(newScreenSize.height, newScreenSize.width);
+        return emit(
+          state.copyWith(
+            area: areaInitial,
+          ),
+        );
       }
 
       final imageDecoded = await decodeImageFromList(
