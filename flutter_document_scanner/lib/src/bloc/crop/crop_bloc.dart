@@ -63,6 +63,11 @@ class CropBloc extends Bloc<CropEvent, CropState> {
     Area area = event.defaultAreaInitial;
 
     if (event.areaInitial != null) {
+      Area areaInitial = event.areaInitial!;
+      if (event.isCustomAreaInitial) {
+        areaInitial = await getAreaInOriginalSize(event.image);
+      }
+
       final imageDecoded = await decodeImageFromList(
         event.image.readAsBytesSync(),
       );
@@ -74,20 +79,20 @@ class CropBloc extends Bloc<CropEvent, CropState> {
 
       area = Area(
         topRight: Point(
-          event.areaInitial!.topRight.x * scalingFactorX,
-          event.areaInitial!.topRight.y * scalingFactorY,
+          areaInitial.topRight.x * scalingFactorX,
+          areaInitial.topRight.y * scalingFactorY,
         ),
         topLeft: Point(
-          event.areaInitial!.topLeft.x * scalingFactorX,
-          event.areaInitial!.topLeft.y * scalingFactorY,
+          areaInitial.topLeft.x * scalingFactorX,
+          areaInitial.topLeft.y * scalingFactorY,
         ),
         bottomLeft: Point(
-          event.areaInitial!.bottomLeft.x * scalingFactorX,
-          event.areaInitial!.bottomLeft.y * scalingFactorY,
+          areaInitial.bottomLeft.x * scalingFactorX,
+          areaInitial.bottomLeft.y * scalingFactorY,
         ),
         bottomRight: Point(
-          event.areaInitial!.bottomRight.x * scalingFactorX,
-          event.areaInitial!.bottomRight.y * scalingFactorY,
+          areaInitial.bottomRight.x * scalingFactorX,
+          areaInitial.bottomRight.y * scalingFactorY,
         ),
       );
     }

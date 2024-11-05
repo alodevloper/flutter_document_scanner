@@ -23,6 +23,7 @@ class CropAreaInitialized extends CropEvent {
     required this.screenSize,
     required this.positionImage,
     required this.defaultAreaInitial,
+    required this.isCustomAreaInitial,
   });
 
   /// Image contour in case it is found
@@ -40,12 +41,15 @@ class CropAreaInitialized extends CropEvent {
   /// Position of the image in the screen
   final Rect positionImage;
 
+  final bool isCustomAreaInitial;
+
   @override
   List<Object?> get props => [
         areaInitial,
         image,
         screenSize,
         positionImage,
+        isCustomAreaInitial,
       ];
 }
 

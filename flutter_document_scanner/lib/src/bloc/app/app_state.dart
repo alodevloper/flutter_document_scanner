@@ -62,6 +62,7 @@ class AppState extends Equatable {
     this.statusEditPhoto = AppStatus.initial,
     this.currentFilterType = FilterType.natural,
     this.statusSavePhotoDocument = AppStatus.initial,
+    this.isCustomContourInitial = false,
   });
 
   /// Initial state
@@ -102,6 +103,8 @@ class AppState extends Equatable {
   /// Status when the photo was saved
   final AppStatus statusSavePhotoDocument;
 
+  final bool isCustomContourInitial;
+
   @override
   List<Object?> get props => [
         currentPage,
@@ -115,6 +118,7 @@ class AppState extends Equatable {
         statusEditPhoto,
         currentFilterType,
         statusSavePhotoDocument,
+        isCustomContourInitial
       ];
 
   /// Creates a copy of this state but with the given fields replaced with
@@ -131,6 +135,7 @@ class AppState extends Equatable {
     AppStatus? statusEditPhoto,
     FilterType? currentFilterType,
     AppStatus? statusSavePhotoDocument,
+    bool? isCustomContourInitial,
   }) {
     return AppState(
       currentPage: currentPage ?? this.currentPage,
@@ -147,6 +152,8 @@ class AppState extends Equatable {
       currentFilterType: currentFilterType ?? this.currentFilterType,
       statusSavePhotoDocument:
           statusSavePhotoDocument ?? this.statusSavePhotoDocument,
+      isCustomContourInitial:
+          isCustomContourInitial ?? this.isCustomContourInitial,
     );
   }
 }
