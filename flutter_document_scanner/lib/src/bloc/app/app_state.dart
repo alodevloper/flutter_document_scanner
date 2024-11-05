@@ -30,7 +30,9 @@ enum AppStatus {
   success,
 
   /// An error occurred
-  failure,
+  failure;
+
+  bool get isSuccess => this == success;
 }
 
 /// Pages of the app

@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 
 class ButtonSize {
-  final double minWidth;
-  final double iconSize;
-  final double height;
-  final TextStyle style;
-  final double padding;
-
   ButtonSize({
     required this.minWidth,
     required this.iconSize,
@@ -51,4 +45,9 @@ class ButtonSize {
       padding: 16,
     );
   }
+  final double minWidth;
+  final double iconSize;
+  final double height;
+  final TextStyle style;
+  final double padding;
 }
