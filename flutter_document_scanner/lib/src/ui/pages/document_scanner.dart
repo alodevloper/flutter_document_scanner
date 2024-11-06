@@ -256,8 +256,13 @@ class _View extends StatelessWidget {
               onSave: onSave,
             );
             break;
-        }
 
+          case AppPages.customPage:
+            if (generalStyles.customPage != null) {
+              page = generalStyles.customPage!;
+            }
+            break;
+        }
         return AnimatedSwitcher(
           duration: const Duration(milliseconds: 400),
           transitionBuilder: pageTransitionBuilder ??

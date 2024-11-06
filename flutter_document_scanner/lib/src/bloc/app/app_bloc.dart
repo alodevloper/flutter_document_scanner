@@ -205,6 +205,17 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           ),
         );
         break;
+      case AppPages.customPage:
+        emit(
+          state.copyWith(
+            currentPage: event.newPage,
+            statusEditPhoto: AppStatus.initial,
+            statusSavePhotoDocument: AppStatus.initial,
+            statusCamera: AppStatus.initial,
+            clearCameraController: true,
+          ),
+        );
+        break;
     }
   }
 

@@ -45,6 +45,9 @@ enum AppPages {
 
   /// Reference to the page [EditDocumentPhotoPage]
   editDocument,
+
+  /// Reference to a custom page
+  customPage,
 }
 
 /// Controls the status general of the app
@@ -136,11 +139,14 @@ class AppState extends Equatable {
     FilterType? currentFilterType,
     AppStatus? statusSavePhotoDocument,
     bool? isCustomContourInitial,
+    bool? clearCameraController,
   }) {
     return AppState(
       currentPage: currentPage ?? this.currentPage,
       statusCamera: statusCamera ?? this.statusCamera,
-      cameraController: cameraController ?? this.cameraController,
+      cameraController: clearCameraController == true
+          ? null
+          : cameraController ?? this.cameraController,
       statusTakePhotoPage: statusTakePhotoPage ?? this.statusTakePhotoPage,
       pictureInitial: pictureInitial ?? this.pictureInitial,
       statusCropPhoto: statusCropPhoto ?? this.statusCropPhoto,
