@@ -58,6 +58,8 @@ class CropPhotoDocumentPage extends StatelessWidget {
             )..add(
                 CropAreaInitialized(
                   areaInitial: context.read<AppBloc>().state.contourInitial,
+                  isCustomAreaInitial:
+                      context.read<AppBloc>().state.isCustomContourInitial,
                   defaultAreaInitial: cropPhotoDocumentStyle.defaultAreaInitial,
                   image: state,
                   screenSize: screenSize,

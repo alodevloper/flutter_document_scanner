@@ -66,4 +66,26 @@ class Area extends Equatable {
       width: width ?? this.width,
     );
   }
+
+  Area rescale(double newHeight, double newWidth) {
+    final scaleX = newWidth / (width ?? 1);
+    final scaleY = newHeight / (height ?? 1);
+
+    double calulateSize(double scale, double size) {
+      return size - (size - size * scale);
+    }
+
+    return Area(
+      topLeft: Point(
+          calulateSize(scaleX, topLeft.x), calulateSize(scaleY, topLeft.y)),
+      topRight: Point(
+          calulateSize(scaleX, topRight.x), calulateSize(scaleY, topRight.y)),
+      bottomLeft: Point(calulateSize(scaleX, bottomLeft.x),
+          calulateSize(scaleY, bottomLeft.y)),
+      bottomRight: Point(calulateSize(scaleX, bottomRight.x),
+          calulateSize(scaleY, bottomRight.y)),
+      height: newHeight,
+      width: newWidth,
+    );
+  }
 }

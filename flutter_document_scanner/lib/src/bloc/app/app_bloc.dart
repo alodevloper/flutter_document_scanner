@@ -10,6 +10,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:camera/camera.dart';
+
 import 'package:flutter_document_scanner/src/bloc/app/app.dart';
 import 'package:flutter_document_scanner/src/bloc/crop/crop.dart';
 import 'package:flutter_document_scanner/src/bloc/edit/edit.dart';
@@ -107,22 +108,33 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     }
 
     _pictureTaken = await _cameraController!.takePicture();
-
-    final byteData = await _pictureTaken!.readAsBytes();
-    final response = await _imageUtils.findContourPhoto(
-      byteData,
-      minContourArea: event.minContourArea,
-    );
-
     final fileImage = File(_pictureTaken!.path);
 
-    emit(
-      state.copyWith(
-        statusTakePhotoPage: AppStatus.success,
-        pictureInitial: fileImage,
-        contourInitial: response,
-      ),
-    );
+    if (event.areaDefault == null) {
+      final byteData = await _pictureTaken!.readAsBytes();
+      final response = await _imageUtils.findContourPhoto(
+        byteData,
+        minContourArea: event.minContourArea,
+      );
+
+      emit(
+        state.copyWith(
+          statusTakePhotoPage: AppStatus.success,
+          pictureInitial: fileImage,
+          contourInitial: response,
+          isCustomContourInitial: false,
+        ),
+      );
+    } else {
+      emit(
+        state.copyWith(
+          statusTakePhotoPage: AppStatus.success,
+          pictureInitial: fileImage,
+          contourInitial: event.areaDefault,
+          isCustomContourInitial: true,
+        ),
+      );
+    }
 
     emit(
       state.copyWith(

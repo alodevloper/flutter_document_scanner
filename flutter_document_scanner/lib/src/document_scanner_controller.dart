@@ -72,12 +72,11 @@ class DocumentScannerController {
   /// it exceeds [minContourArea]
   ///
   /// [minContourArea] is default 80000.0
-  Future<void> takePhoto({
-    double? minContourArea,
-  }) async {
+  Future<void> takePhoto({double? minContourArea, Area? areaDefault}) async {
     _appBloc.add(
       AppPhotoTaken(
         minContourArea: minContourArea,
+        areaDefault: areaDefault,
       ),
     );
   }
