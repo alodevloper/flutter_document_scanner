@@ -21,6 +21,7 @@ class GeneralStyles {
     this.messageSavingPicture = 'Saving picture',
     this.showCameraPreview = true,
     this.widgetInsteadOfCameraPreview,
+    this.customPage,
   });
 
   /// Hide the default bottom navigation.
@@ -56,4 +57,7 @@ class GeneralStyles {
   ///
   /// If this is null, a SizedBox.shrink() will be displayed
   final Widget? widgetInsteadOfCameraPreview;
+
+  /// Widget to be displayed on the page
+  final Widget? customPage;
 }

@@ -207,8 +207,12 @@ class _CropView extends StatelessWidget {
                   selector: (state) => state.area.topLeft,
                   builder: (context, state) {
                     return Positioned(
-                      left: state.x - (cropPhotoDocumentStyle.dotSize / 2),
-                      top: state.y - (cropPhotoDocumentStyle.dotSize / 2),
+                      left: state.x -
+                          (cropPhotoDocumentStyle.dotSize / 2) -
+                          cropPhotoDocumentStyle.paddingDot,
+                      top: state.y -
+                          (cropPhotoDocumentStyle.dotSize / 2) -
+                          cropPhotoDocumentStyle.paddingDot,
                       child: GestureDetector(
                         onPanUpdate: (details) {
                           context.read<CropBloc>().add(
@@ -221,18 +225,24 @@ class _CropView extends StatelessWidget {
                         },
                         child: Container(
                           color: Colors.transparent,
-                          width: cropPhotoDocumentStyle.dotSize,
-                          height: cropPhotoDocumentStyle.dotSize,
-                          child: Center(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(
-                                cropPhotoDocumentStyle.dotRadius,
-                              ),
-                              child: Container(
-                                width: cropPhotoDocumentStyle.dotSize - (2 * 2),
-                                height:
-                                    cropPhotoDocumentStyle.dotSize - (2 * 2),
-                                color: Colors.white,
+                          padding:
+                              EdgeInsets.all(cropPhotoDocumentStyle.paddingDot),
+                          child: Container(
+                            color: Colors.transparent,
+                            width: cropPhotoDocumentStyle.dotSize,
+                            height: cropPhotoDocumentStyle.dotSize,
+                            child: Center(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(
+                                  cropPhotoDocumentStyle.dotRadius,
+                                ),
+                                child: Container(
+                                  width:
+                                      cropPhotoDocumentStyle.dotSize - (2 * 2),
+                                  height:
+                                      cropPhotoDocumentStyle.dotSize - (2 * 2),
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
@@ -247,8 +257,12 @@ class _CropView extends StatelessWidget {
                   selector: (state) => state.area.topRight,
                   builder: (context, state) {
                     return Positioned(
-                      left: state.x - (cropPhotoDocumentStyle.dotSize / 2),
-                      top: state.y - (cropPhotoDocumentStyle.dotSize / 2),
+                      left: state.x -
+                          (cropPhotoDocumentStyle.dotSize / 2) -
+                          cropPhotoDocumentStyle.paddingDot,
+                      top: state.y -
+                          (cropPhotoDocumentStyle.dotSize / 2) -
+                          cropPhotoDocumentStyle.paddingDot,
                       child: GestureDetector(
                         onPanUpdate: (details) {
                           context.read<CropBloc>().add(
@@ -261,18 +275,24 @@ class _CropView extends StatelessWidget {
                         },
                         child: Container(
                           color: Colors.transparent,
-                          width: cropPhotoDocumentStyle.dotSize,
-                          height: cropPhotoDocumentStyle.dotSize,
-                          child: Center(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(
-                                cropPhotoDocumentStyle.dotRadius,
-                              ),
-                              child: Container(
-                                width: cropPhotoDocumentStyle.dotSize - (2 * 2),
-                                height:
-                                    cropPhotoDocumentStyle.dotSize - (2 * 2),
-                                color: Colors.white,
+                          padding:
+                              EdgeInsets.all(cropPhotoDocumentStyle.paddingDot),
+                          child: Container(
+                            color: Colors.transparent,
+                            width: cropPhotoDocumentStyle.dotSize,
+                            height: cropPhotoDocumentStyle.dotSize,
+                            child: Center(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(
+                                  cropPhotoDocumentStyle.dotRadius,
+                                ),
+                                child: Container(
+                                  width:
+                                      cropPhotoDocumentStyle.dotSize - (2 * 2),
+                                  height:
+                                      cropPhotoDocumentStyle.dotSize - (2 * 2),
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
@@ -287,8 +307,12 @@ class _CropView extends StatelessWidget {
                   selector: (state) => state.area.bottomLeft,
                   builder: (context, state) {
                     return Positioned(
-                      left: state.x - (cropPhotoDocumentStyle.dotSize / 2),
-                      top: state.y - (cropPhotoDocumentStyle.dotSize / 2),
+                      left: state.x -
+                          (cropPhotoDocumentStyle.dotSize / 2) -
+                          cropPhotoDocumentStyle.paddingDot,
+                      top: state.y -
+                          (cropPhotoDocumentStyle.dotSize / 2) -
+                          cropPhotoDocumentStyle.paddingDot,
                       child: GestureDetector(
                         onPanUpdate: (details) {
                           context.read<CropBloc>().add(
@@ -301,18 +325,24 @@ class _CropView extends StatelessWidget {
                         },
                         child: Container(
                           color: Colors.transparent,
-                          width: cropPhotoDocumentStyle.dotSize,
-                          height: cropPhotoDocumentStyle.dotSize,
-                          child: Center(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(
-                                cropPhotoDocumentStyle.dotRadius,
-                              ),
-                              child: Container(
-                                width: cropPhotoDocumentStyle.dotSize - (2 * 2),
-                                height:
-                                    cropPhotoDocumentStyle.dotSize - (2 * 2),
-                                color: Colors.white,
+                          padding:
+                              EdgeInsets.all(cropPhotoDocumentStyle.paddingDot),
+                          child: Container(
+                            color: Colors.transparent,
+                            width: cropPhotoDocumentStyle.dotSize,
+                            height: cropPhotoDocumentStyle.dotSize,
+                            child: Center(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(
+                                  cropPhotoDocumentStyle.dotRadius,
+                                ),
+                                child: Container(
+                                  width:
+                                      cropPhotoDocumentStyle.dotSize - (2 * 2),
+                                  height:
+                                      cropPhotoDocumentStyle.dotSize - (2 * 2),
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
@@ -327,8 +357,12 @@ class _CropView extends StatelessWidget {
                   selector: (state) => state.area.bottomRight,
                   builder: (context, state) {
                     return Positioned(
-                      left: state.x - (cropPhotoDocumentStyle.dotSize / 2),
-                      top: state.y - (cropPhotoDocumentStyle.dotSize / 2),
+                      left: state.x -
+                          (cropPhotoDocumentStyle.dotSize / 2) -
+                          cropPhotoDocumentStyle.paddingDot,
+                      top: state.y -
+                          (cropPhotoDocumentStyle.dotSize / 2) -
+                          cropPhotoDocumentStyle.paddingDot,
                       child: GestureDetector(
                         onPanUpdate: (details) {
                           context.read<CropBloc>().add(
@@ -341,18 +375,24 @@ class _CropView extends StatelessWidget {
                         },
                         child: Container(
                           color: Colors.transparent,
-                          width: cropPhotoDocumentStyle.dotSize,
-                          height: cropPhotoDocumentStyle.dotSize,
-                          child: Center(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(
-                                cropPhotoDocumentStyle.dotRadius,
-                              ),
-                              child: Container(
-                                width: cropPhotoDocumentStyle.dotSize - (2 * 2),
-                                height:
-                                    cropPhotoDocumentStyle.dotSize - (2 * 2),
-                                color: Colors.white,
+                          padding:
+                              EdgeInsets.all(cropPhotoDocumentStyle.paddingDot),
+                          child: Container(
+                            color: Colors.transparent,
+                            width: cropPhotoDocumentStyle.dotSize,
+                            height: cropPhotoDocumentStyle.dotSize,
+                            child: Center(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(
+                                  cropPhotoDocumentStyle.dotRadius,
+                                ),
+                                child: Container(
+                                  width:
+                                      cropPhotoDocumentStyle.dotSize - (2 * 2),
+                                  height:
+                                      cropPhotoDocumentStyle.dotSize - (2 * 2),
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
