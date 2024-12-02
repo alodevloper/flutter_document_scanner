@@ -45,6 +45,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   CameraController? _cameraController;
   late XFile? _pictureTaken;
 
+  Uint8List? pictureCropped;
+
   /// Initialize [CameraController]
   /// based on the parameters sent by [AppCameraInitialized]
   ///
@@ -238,6 +240,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     AppLoadCroppedPhoto event,
     Emitter<AppState> emit,
   ) async {
+    pictureCropped = event.image;
     emit(
       state.copyWith(
         statusCropPhoto: AppStatus.success,
